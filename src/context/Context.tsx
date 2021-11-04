@@ -1,13 +1,10 @@
 import { createContext, useReducer, useContext, ReactNode } from 'react';
+import { Action, State, Context } from '../common/types';
+import { ContextProviderProps } from '../common/interfaces';
 
 const initialState = {
 	count: 0,
 };
-
-export type Action = 'increment' | 'decrement';
-export type Dispatch = (action: Action) => void;
-export type State = typeof initialState;
-export type Context = { state: State; dispatch: Dispatch };
 
 const CounterContext = createContext<Context | undefined>(undefined);
 
@@ -28,7 +25,7 @@ function counterReducer(state: State, action: Action) {
 	}
 }
 
-export function CounterProvider({ children }: { children: ReactNode }) {
+export function CounterProvider({ children }: ContextProviderProps) {
 	const [state, dispatch] = useReducer(counterReducer, initialState);
 
 	return (
