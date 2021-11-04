@@ -1,14 +1,17 @@
 import React from 'react';
 // import { useCounter } from './context/Context';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Footer from './components/Footer';
 
-function App() {
+export default function App() {
 	// const { state, dispatch } = useCounter();
 
 	return (
-		<div className="App">
-			<h1>Marvel App</h1>
+		<div>
+			<Navbar />
+			<Home />
+			<Footer />
 		</div>
 	);
 }
-
-export default App;
