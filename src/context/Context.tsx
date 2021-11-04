@@ -1,4 +1,4 @@
-import { createContext, useReducer, useContext, ReactNode } from 'react';
+import { createContext, useReducer, useContext } from 'react';
 import { Action, State, Context } from '../common/types';
 import { ContextProviderProps } from '../common/interfaces';
 
@@ -6,7 +6,7 @@ const initialState = {
 	count: 0,
 };
 
-const CounterContext = createContext<Context | undefined>(undefined);
+const CounterContext = createContext<Context>({} as Context);
 
 function counterReducer(state: State, action: Action) {
 	switch (action) {
