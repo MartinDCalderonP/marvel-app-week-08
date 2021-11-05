@@ -11,7 +11,7 @@ export default function useFetch<T>(fetchUrl: string): IUseFetch<T> {
 		const abortController = new AbortController();
 		const signal = abortController.signal;
 
-		const fetchData = async (signal: AbortSignal) => {
+		const fetchData = async () => {
 			setLoading(true);
 
 			fetch(url, { signal })
@@ -26,8 +26,10 @@ export default function useFetch<T>(fetchUrl: string): IUseFetch<T> {
 				});
 		};
 
+		fetchData();
+
 		return () => abortController.abort();
-	}, [fetchUrl]);
+	}, [url]);
 
 	return { data, loading };
 }
