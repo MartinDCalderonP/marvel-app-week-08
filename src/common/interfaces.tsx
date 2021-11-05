@@ -15,6 +15,18 @@ export interface IUseFetch<T> {
 	loading: boolean;
 }
 
+export interface ICardsContainer {
+	className?: string;
+	loading: boolean;
+	posts: any;
+}
+
+export interface IPaginationButtons {
+	totalPosts: number;
+	postsPerPage: number;
+	paginate: (paginate: number) => void;
+}
+
 export interface ICard {
 	id: number;
 	name: string;
