@@ -5,6 +5,6 @@ export interface ContextProviderProps {
 }
 
 export interface ICustomRoute {
-	element: ReactNode;
+	children: ReactNode;
 	path: string;
 }
