@@ -7,21 +7,21 @@ export default function Navbar() {
 		<nav className={styles.navbar}>
 			<NavLink
 				to="/characters"
-				className={({ isActive }) => (isActive ? styles.active : '')}
+				className={(isActive) => (isActive ? styles.active : '')}
 			>
 				Characters
 			</NavLink>
 
 			<NavLink
 				to="/comics"
-				className={({ isActive }) => (isActive ? styles.active : '')}
+				className={(isActive) => (isActive ? styles.active : '')}
 			>
 				Comics
 			</NavLink>
 
 			<NavLink
 				to="/stories"
-				className={({ isActive }) => (isActive ? styles.active : '')}
+				className={(isActive) => (isActive ? styles.active : '')}
 			>
 				Stories
 			</NavLink>
