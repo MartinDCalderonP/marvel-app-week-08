@@ -1,11 +1,18 @@
 .buttonsContainer {
 	margin-bottom: 20px;
+	display: flex;
+	max-width: 80vw;
+	overflow: hidden;
+
+	&:hover {
+		overflow-x: scroll;
+	}
 
 	.pageButton {
 		font-size: 1rem;
 		background-color: var(--backgroundColor);
-		color: var(--lettersColor);
-		margin: 0 10px;
+		color: var(--textColor);
+		margin: 10px;
 		border: 1px solid var(--detailsColor);
 		padding: 10px 15px;
 		cursor: pointer;

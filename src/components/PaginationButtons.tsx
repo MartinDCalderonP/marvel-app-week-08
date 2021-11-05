@@ -13,7 +13,7 @@ export default function PaginationButtons({
 			{ length: Math.ceil(totalPosts / postsPerPage) },
 			(_, i) => 1 + i
 		);
-	}, [postsPerPage]);
+	}, [totalPosts, postsPerPage]);
 
 	const handlePageButtonClick = (pageNumber: number) => {
 		paginate(pageNumber);
