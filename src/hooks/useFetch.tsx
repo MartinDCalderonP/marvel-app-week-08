@@ -5,7 +5,7 @@ import { API_KEY, API_HASH } from '../Keys';
 export default function useFetch<T>(fetchUrl: string): IUseFetch<T> {
 	const [data, setData] = useState<T>();
 	const [loading, setLoading] = useState(true);
-	const url = `${fetchUrl}?ts=1&apikey=${API_KEY}&hash=${API_HASH}`;
+	const url = `${fetchUrl}&ts=1&apikey=${API_KEY}&hash=${API_HASH}`;
 
 	useEffect(() => {
 		const abortController = new AbortController();
