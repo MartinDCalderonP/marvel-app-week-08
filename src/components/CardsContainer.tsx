@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../styles/CardsContainer.module.scss';
-import { ICardsContainer } from '../common/interfaces';
+import { ICardsContainer, ICharacter } from '../common/interfaces';
 import Spinner from './Spinner';
 import Card from './Card';
 
@@ -15,7 +15,7 @@ export default function CardsContainer({
 
 			{!loading &&
 				posts?.length > 0 &&
-				posts?.map((post: any) => (
+				posts?.map((post: ICharacter) => (
 					<Card
 						key={`character${post.id}`}
 						id={post.id}
