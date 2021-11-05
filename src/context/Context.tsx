@@ -1,6 +1,6 @@
 import { createContext, useReducer, useContext } from 'react';
 import { Action, State, Context } from '../common/types';
-import { IWrapperProps } from '../common/interfaces';
+import { ContextProviderProps } from '../common/interfaces';
 
 const initialState = {
 	count: 0,
@@ -25,7 +25,7 @@ function counterReducer(state: State, action: Action) {
 	}
 }
 
-export function CounterProvider({ children }: IWrapperProps) {
+export function CounterProvider({ children }: ContextProviderProps) {
 	const [state, dispatch] = useReducer(counterReducer, initialState);
 
 	return (

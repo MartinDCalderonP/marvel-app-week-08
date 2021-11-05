@@ -6,8 +6,7 @@ import {
 	Navigate,
 } from 'react-router-dom';
 // import { useCounter } from './context/Context';
-import RouteWithFooter from './components/RouteWithFooter';
-import RouteWithoutFooter from './components/RouteWithoutFooter';
+// import RouteWithFooter from './components/RouteWithFooter';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Footer from './components/Footer';
@@ -18,9 +17,16 @@ export default function App() {
 	return (
 		<Router>
 			<Routes>
-				<Route path="/">
-					<Home />
-				</Route>
+				<Route
+					path="/"
+					element={
+						<>
+							<Navbar />
+							<Home />
+							<Footer />
+						</>
+					}
+				/>
 
 				<Navigate to={{ pathname: '/' }} />
 			</Routes>

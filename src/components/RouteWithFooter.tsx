@@ -1,15 +1,20 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { IWrapperProps } from '../common/interfaces';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import { ICustomRoute } from '../common/interfaces';
+import Navbar from './Navbar';
+import Footer from './Footer';
 
-export default function RouteWithFooter({ children, ...rest }: IWrapperProps) {
+export default function RouteWithFooter({ element, ...rest }: ICustomRoute) {
 	return (
-		<Route {...rest}>
-			<Navbar />
-			{children}
-			<Footer />
-		</Route>
+		<Route
+			{...rest}
+			element={
+				<>
+					<Navbar />
+					{element}
+					<Footer />
+				</>
+			}
+		/>
 	);
 }
