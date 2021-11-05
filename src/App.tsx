@@ -16,20 +16,15 @@ export default function App() {
 
 	return (
 		<Router>
+			<Navbar />
+
 			<Routes>
-				<Route
-					path="/"
-					element={
-						<>
-							<Navbar />
-							<Home />
-							<Footer />
-						</>
-					}
-				/>
+				<Route path="/" element={<Home />} />
 
 				<Navigate to={{ pathname: '/' }} />
 			</Routes>
+
+			<Footer />
 		</Router>
 	);
 }
