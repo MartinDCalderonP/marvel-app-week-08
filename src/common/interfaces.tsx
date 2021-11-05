@@ -9,3 +9,8 @@ export interface ICustomRoute {
 	path: string;
 	children: ReactNode;
 }
+
+export interface IUseFetch<T> {
+	data: T | undefined;
+	loading: boolean;
+}
