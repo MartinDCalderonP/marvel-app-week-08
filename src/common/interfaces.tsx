@@ -14,3 +14,9 @@ export interface IUseFetch<T> {
 	data: T | undefined;
 	loading: boolean;
 }
+
+export interface ICard {
+	id: number;
+	name: string;
+	thumbnail: string;
+}
