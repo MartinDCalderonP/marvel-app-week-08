@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles/ComicsSelect.module.scss';
 import { API } from '../common/enums';
 import { IComic } from '../common/interfaces';
 import { isComicsData } from '../common/typeGuards';
@@ -9,15 +10,19 @@ export default function ComicsSelect() {
 	const { data, loading } = useFetch(fetchUrl);
 
 	return (
-		<select>
-			<option value="">Select a Comic</option>
-			{!loading &&
-				isComicsData(data).length > 0 &&
-				isComicsData(data).map((comic: IComic) => (
-					<option key={comic.id} value={comic.id}>
-						{comic.title}
-					</option>
-				))}
-		</select>
+		<>
+			{!loading && (
+				<select className={styles.select}>
+					<option hidden>Select a Comic</option>
+
+					{isComicsData(data).length > 0 &&
+						isComicsData(data).map((comic: IComic) => (
+							<option key={comic.id} value={comic.id}>
+								{comic.title}
+							</option>
+						))}
+				</select>
+			)}
+		</>
 	);
 }
