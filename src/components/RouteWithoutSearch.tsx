@@ -4,7 +4,10 @@ import { ICustomRoute } from '../common/interfaces';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
-export default function RouteWithFooter({ children, ...rest }: ICustomRoute) {
+export default function RouteWithoutSearch({
+	children,
+	...rest
+}: ICustomRoute) {
 	return (
 		<Route {...rest}>
 			<Navbar />

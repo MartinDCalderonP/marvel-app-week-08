@@ -7,7 +7,6 @@ import { isCharactersData, hasTotal } from '../common/typeGuards';
 import useFetch from '../hooks/useFetch';
 // import data from '../jsons/characters.json';
 import Spinner from '../components/Spinner';
-import SearchInput from '../components/SearchInput';
 import CardsContainer from '../components/CardsContainer';
 import PaginationButtons from '../components/PaginationButtons';
 
@@ -31,8 +30,6 @@ export default function Characters() {
 
 			{!loading && isCharactersData(data).length > 0 && (
 				<>
-					<SearchInput />
-
 					<CardsContainer loading={loading} posts={isCharactersData(data)} />
 
 					<PaginationButtons
