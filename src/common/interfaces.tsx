@@ -82,3 +82,10 @@ export interface URL {
 	type: string;
 	url: string;
 }
+
+export interface ISuggestionsList {
+	searchedTerm: string;
+	suggestionSelected: (suggestionSelected: string) => void;
+	closeSuggestions: (closeSuggestions: boolean) => void;
+	pressedKey: any;
+}

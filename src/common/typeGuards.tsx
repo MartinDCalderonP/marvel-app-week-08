@@ -5,3 +5,7 @@ export const isCharactersData = (data: any) => {
 export const hasTotal = (data: any) => {
 	return data?.data && data?.data?.total;
 };
+
+export const isSuggestionsData = (data: any) => {
+	return data?.data && data?.data?.results;
+};
