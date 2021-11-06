@@ -28,7 +28,7 @@ export default function SuggestionsList({
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-	}, [ulRef]);
+	}, [ulRef, closeSuggestions]);
 
 	useEffect(() => {
 		if (pressedKey.keyCode === 38 && currentSuggestion > 0) {
@@ -46,7 +46,13 @@ export default function SuggestionsList({
 			suggestionSelected(isSuggestionsData(data)[currentSuggestion].name);
 			closeSuggestions(true);
 		}
-	}, [pressedKey]);
+	}, [
+		pressedKey,
+		currentSuggestion,
+		data,
+		closeSuggestions,
+		suggestionSelected,
+	]);
 
 	const handleSuggestionClick = (e: MouseEvent<HTMLLIElement>) => {
 		if (typeof e.currentTarget.textContent === 'string') {
