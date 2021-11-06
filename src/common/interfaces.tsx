@@ -1,9 +1,5 @@
 import { ReactNode } from 'react';
 
-export interface ContextProviderProps {
-	children: ReactNode;
-}
-
 export interface ICustomRoute {
 	exact?: boolean;
 	path: string;
@@ -45,10 +41,6 @@ export interface ICharacter {
 	stories: Stories;
 	events: Comics;
 	urls: URL[];
-}
-
-export interface ICharactersUseParams {
-	page: string;
 }
 
 export interface Comics {

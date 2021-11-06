@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import styles from '../styles/Characters.module.scss';
 import { useHistory, useParams } from 'react-router';
 import { paths } from '../common/enums';
-import { ICharactersUseParams } from '../common/interfaces';
 import useFetch from '../hooks/useFetch';
 // import data from '../jsons/characters.json';
 import CardsContainer from '../components/CardsContainer';
 import PaginationButtons from '../components/PaginationButtons';
 
 export default function Characters() {
-	const params = useParams<ICharactersUseParams>();
+	const params = useParams<{ page: string }>();
 	const page = parseInt(params.page) || 1;
 	const charactersUrl = `https://gateway.marvel.com:443/v1/public/characters?limit=8`;
 	const [fetchUrl, setFetchUrl] = useState(charactersUrl);
