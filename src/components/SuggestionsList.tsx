@@ -3,7 +3,7 @@ import styles from '../styles/SuggestionsList.module.scss';
 import useFetch from '../hooks/useFetch';
 import { ISuggestionsList } from '../common/interfaces';
 import { API } from '../common/enums';
-import { isCharactersData } from '../common/typeGuards';
+import { isCorrectData } from '../common/typeGuards';
 
 export default function SuggestionsList({
 	searchedTerm,
@@ -37,13 +37,13 @@ export default function SuggestionsList({
 
 		if (
 			pressedKey.keyCode === 40 &&
-			currentSuggestion < isCharactersData(data).length - 1
+			currentSuggestion < isCorrectData(data).length - 1
 		) {
 			setCurrentSuggestion((current) => current + 1);
 		}
 
 		if (pressedKey.keyCode === 13) {
-			suggestionSelected(isCharactersData(data)[currentSuggestion].name);
+			suggestionSelected(isCorrectData(data)[currentSuggestion].name);
 			closeSuggestions(true);
 		}
 	}, [
@@ -63,9 +63,9 @@ export default function SuggestionsList({
 
 	return (
 		<>
-			{!loading && isCharactersData(data).length > 0 && (
+			{!loading && isCorrectData(data).length > 0 && (
 				<ul className={styles.suggestionsList} ref={ulRef}>
-					{isCharactersData(data)?.map((suggestion: any, index: number) => (
+					{isCorrectData(data)?.map((suggestion: any, index: number) => (
 						<li
 							className={
 								styles.suggestion +

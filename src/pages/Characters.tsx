@@ -3,7 +3,7 @@ import styles from '../styles/Characters.module.scss';
 import { useParams, useHistory } from 'react-router';
 import { paths, API } from '../common/enums';
 import { IUseParams } from '../common/interfaces';
-import { isCharactersData, hasTotal } from '../common/typeGuards';
+import { isCorrectData, hasTotal } from '../common/typeGuards';
 import useFetch from '../hooks/useFetch';
 // import data from '../jsons/characters.json';
 import Spinner from '../components/Spinner';
@@ -47,9 +47,9 @@ export default function Characters() {
 		<div className={styles.characters}>
 			{loading && <Spinner />}
 
-			{!loading && isCharactersData(data).length > 0 && (
+			{!loading && isCorrectData(data).length > 0 && (
 				<>
-					<CardsContainer loading={loading} posts={isCharactersData(data)} />
+					<CardsContainer loading={loading} posts={isCorrectData(data)} />
 
 					<PaginationButtons
 						totalPosts={hasTotal(data)}
@@ -59,7 +59,7 @@ export default function Characters() {
 				</>
 			)}
 
-			{!loading && searchedTerm && isCharactersData(data).length === 0 && (
+			{!loading && searchedTerm && isCorrectData(data).length === 0 && (
 				<h1 className={styles.noResults}>
 					{`No results found for "${searchedTerm.replaceAll('+', ' ')}".`}
 				</h1>
