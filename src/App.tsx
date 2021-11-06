@@ -5,6 +5,7 @@ import { paths } from './common/enums';
 import RouteWithFooter from './components/RouteWithFooter';
 import Home from './pages/Home';
 import Characters from './pages/Characters';
+import Search from './pages/Search';
 
 export default function App() {
 	// const { state, dispatch } = useCounter();
@@ -21,9 +22,9 @@ export default function App() {
 				</RouteWithFooter>
 
 				<RouteWithFooter
-					path={`${paths.search}:searchedTerm${paths.page}=:page`}
+					path={`${paths.search}:searchedTerm`}
 				>
-					<Characters />
+					<Search />
 				</RouteWithFooter>
 
 				<Redirect to={{ pathname: `${paths.home}` }} />

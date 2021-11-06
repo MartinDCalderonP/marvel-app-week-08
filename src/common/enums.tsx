@@ -1,7 +1,7 @@
 export enum paths {
 	home = '/home',
 	page = '/page',
-	search = '/results?search_query=',
+	search = '/search_query=',
 	characters = '/characters',
 	comics = '/comics',
 	stories = '/stories',

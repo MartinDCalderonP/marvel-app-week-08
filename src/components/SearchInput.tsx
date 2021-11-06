@@ -19,7 +19,7 @@ export default function SearchInput() {
 	};
 
 	const searchTerm = (term: string) => {
-		history.push(`${paths.search}${term.replaceAll(' ', '+')}${paths.page}=1`);
+		history.push(`${paths.search}${term.replaceAll(' ', '+')}`);
 	};
 
 	const handleSearchButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
