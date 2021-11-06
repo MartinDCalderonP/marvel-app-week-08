@@ -21,7 +21,7 @@ export default function Characters() {
 
 	const handlePaginate = (pageNumber: number) => {
 		setCurrentPage(pageNumber);
-		history.push(`${paths.characters}${paths.page}=${pageNumber}`);
+		history.push(`${paths.characters}${paths.page}${pageNumber}`);
 	};
 
 	return (

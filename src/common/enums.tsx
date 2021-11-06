@@ -1,6 +1,6 @@
 export enum paths {
 	home = '/home',
-	page = '/page',
+	page = '/page=',
 	search = '/search_query=',
 	characters = '/characters',
 	comics = '/comics',
