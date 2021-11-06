@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/Characters.module.scss';
 import { useHistory, useParams } from 'react-router';
-import { paths } from '../common/enums';
+import { paths, API } from '../common/enums';
 import { isCharactersData, hasTotal } from '../common/typeGuards';
 import useFetch from '../hooks/useFetch';
 // import data from '../jsons/characters.json';
@@ -12,7 +12,7 @@ export default function Characters() {
 	const params = useParams<{ page: string }>();
 	const [currentPage, setCurrentPage] = useState<number>(parseInt(params.page));
 	const postsPerPage = 8;
-	const fetchUrl = `https://gateway.marvel.com:443/v1/public/characters?limit=8&offset=${
+	const fetchUrl = `${API.characters}?limit=8&offset=${
 		(currentPage - 1) * postsPerPage
 	}`;
 	const { data, loading } = useFetch(fetchUrl);
