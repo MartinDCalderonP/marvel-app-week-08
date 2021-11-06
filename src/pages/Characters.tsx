@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styles from '../styles/Characters.module.scss';
-import { useHistory, useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 import { paths, API } from '../common/enums';
+import { IUseParams } from '../common/interfaces';
 import { isCharactersData, hasTotal } from '../common/typeGuards';
 import useFetch from '../hooks/useFetch';
 // import data from '../jsons/characters.json';
@@ -10,8 +11,8 @@ import CardsContainer from '../components/CardsContainer';
 import PaginationButtons from '../components/PaginationButtons';
 
 export default function Characters() {
-	const params = useParams<{ page: string }>();
-	const [currentPage, setCurrentPage] = useState<number>(parseInt(params.page));
+	const { page } = useParams<IUseParams>();
+	const [currentPage, setCurrentPage] = useState<number>(parseInt(page));
 	const postsPerPage = 8;
 	const offset = postsPerPage * (currentPage - 1);
 	const fetchUrl = `${API.characters}?${API.limit}${postsPerPage}&${API.offset}${offset}`;

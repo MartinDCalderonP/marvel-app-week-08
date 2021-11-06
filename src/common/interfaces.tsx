@@ -89,3 +89,8 @@ export interface ISuggestionsList {
 	closeSuggestions: (closeSuggestions: boolean) => void;
 	pressedKey: any;
 }
+
+export interface IUseParams {
+	page: string;
+	searchedTerm: string;
+}
