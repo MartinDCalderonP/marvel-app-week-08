@@ -11,7 +11,7 @@ export default function SuggestionsList({
 	closeSuggestions,
 	pressedKey,
 }: ISuggestionsList) {
-	const fetchUrl = `${API.characters}?${API.search}${searchedTerm}`;
+	const fetchUrl = `${API.charactersUrl}?${API.search}${searchedTerm}`;
 	const { data, loading } = useFetch(fetchUrl);
 	const ulRef = useRef<HTMLUListElement>(null);
 	const [currentSuggestion, setCurrentSuggestion] = useState<number>(0);

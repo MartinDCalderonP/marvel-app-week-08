@@ -16,7 +16,7 @@ export default function Characters() {
 	const postsPerPage = 8;
 	const offset = postsPerPage * (currentPage - 1);
 	const fetchUrl =
-		`${API.characters}?${API.limit}${postsPerPage}&${API.offset}${offset}` +
+		`${API.charactersUrl}?${API.limit}${postsPerPage}&${API.offset}${offset}` +
 		(searchedTerm ? `&${API.search}${searchedTerm}` : '');
 	const { data, loading } = useFetch(fetchUrl);
 	const history = useHistory();
@@ -24,11 +24,15 @@ export default function Characters() {
 	const handlePaginate = (pageNumber: number) => {
 		setCurrentPage(pageNumber);
 
+		let newUrl = '';
+
 		if (!searchedTerm) {
-			history.push(`${paths.characters}${paths.page}${pageNumber}`);
+			newUrl = `${paths.characters}${paths.page}${pageNumber}`;
 		} else {
-			history.push(`${paths.search}${searchedTerm}${paths.page}${pageNumber}`);
+			newUrl = `${paths.search}${searchedTerm}${paths.page}${pageNumber}`;
 		}
+
+		history.push(newUrl);
 	};
 
 	return (
