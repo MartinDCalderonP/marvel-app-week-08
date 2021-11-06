@@ -22,7 +22,7 @@
 		&.active,
 		&:hover {
 			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-			border-color: #a1a1a1;
+			border-color: var(--hoverDetailsColor);
 		}
 	}
 }

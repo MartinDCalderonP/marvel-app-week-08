@@ -5,8 +5,8 @@
 	--textColor: #ffffff;
 	--innerBackgroundColor: #ffffff;
 	--innerTextColor: #151515;
-	--detailsColor: #ec1d24;
-	--hoverDetailsColor: darkred;
+	--detailsColor: darkred;
+	--hoverDetailsColor: #ec1d24;
 }
 
 * {
