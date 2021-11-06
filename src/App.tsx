@@ -2,8 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 // import { useCounter } from './context/Context';
 import { paths } from './common/enums';
-import RouteWithSearch from './components/RouteWithSearch';
-import RouteWithoutSearch from './components/RouteWithoutSearch';
+import RouteWithFooter from './components/RouteWithFooter';
 import Home from './pages/Home';
 import Characters from './pages/Characters';
 
@@ -13,19 +12,19 @@ export default function App() {
 	return (
 		<Router>
 			<Switch>
-				<RouteWithoutSearch exact path={paths.home}>
+				<RouteWithFooter exact path={paths.home}>
 					<Home />
-				</RouteWithoutSearch>
+				</RouteWithFooter>
 
-				<RouteWithSearch path={`${paths.characters}${paths.page}=:page`}>
+				<RouteWithFooter path={`${paths.characters}${paths.page}=:page`}>
 					<Characters />
-				</RouteWithSearch>
+				</RouteWithFooter>
 
-				<RouteWithSearch
+				<RouteWithFooter
 					path={`${paths.search}:searchedTerm${paths.page}=:page`}
 				>
 					<Characters />
-				</RouteWithSearch>
+				</RouteWithFooter>
 
 				<Redirect to={{ pathname: `${paths.home}` }} />
 			</Switch>
