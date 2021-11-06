@@ -11,25 +11,33 @@ import CardsContainer from '../components/CardsContainer';
 import PaginationButtons from '../components/PaginationButtons';
 
 export default function Characters() {
-	const { searchedTerm, page } = useParams<IUseParams>();
+	const { page, searchedTerm, comics, stories } = useParams<IUseParams>();
 	const [currentPage, setCurrentPage] = useState<number>(parseInt(page));
 	const postsPerPage = 8;
 	const offset = postsPerPage * (currentPage - 1);
 	const fetchUrl =
 		`${API.charactersUrl}?${API.limit}${postsPerPage}&${API.offset}${offset}` +
-		(searchedTerm ? `&${API.search}${searchedTerm}` : '');
+		(searchedTerm ? `&${API.search}${searchedTerm}` : '') +
+		(comics ? `&${API.comics}${comics}` : '') +
+		(stories ? `&${API.stories}${stories}` : '');
 	const { data, loading } = useFetch(fetchUrl);
 	const history = useHistory();
 
 	const handlePaginate = (pageNumber: number) => {
 		setCurrentPage(pageNumber);
 
-		let newUrl = '';
+		let newUrl = `${paths.characters}${paths.page}${pageNumber}`;
 
-		if (!searchedTerm) {
-			newUrl = `${paths.characters}${paths.page}${pageNumber}`;
-		} else {
+		if (searchedTerm) {
 			newUrl = `${paths.search}${searchedTerm}${paths.page}${pageNumber}`;
+		}
+
+		if (comics) {
+			newUrl = `${paths.comics}${comics}${paths.page}${pageNumber}`;
+		}
+
+		if (stories) {
+			newUrl = `${paths.stories}${stories}${paths.page}${pageNumber}`;
 		}
 
 		history.push(newUrl);
