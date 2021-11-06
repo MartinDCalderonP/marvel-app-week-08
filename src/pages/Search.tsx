@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from '../styles/Search.module.scss';
 import { useParams } from 'react-router-dom';
 import { API } from '../common/enums';
-import { isCharactersData } from '../common/typeGuards';
+import { isCharactersData, hasTotal } from '../common/typeGuards';
 import useFetch from '../hooks/useFetch';
 import Spinner from '../components/Spinner';
 import CardsContainer from '../components/CardsContainer';
@@ -10,14 +10,14 @@ import PaginationButtons from '../components/PaginationButtons';
 
 export default function Search() {
 	const { searchedTerm } = useParams<{ searchedTerm: string }>();
-	const fetchUrl = `${API.characters}?nameStartsWith=${searchedTerm}`;
-	const { data, loading } = useFetch(fetchUrl);
-	const postsPerPage = 8;
 	const [currentPage, setCurrentPage] = useState(1);
-
-	const startIndex = postsPerPage * (currentPage - 1);
-	const endIndex = postsPerPage * currentPage;
-	const currentPosts = isCharactersData(data)?.slice(startIndex, endIndex);
+	const postsPerPage = 8;
+	const fetchUrl = `${
+		API.characters
+	}?nameStartsWith=${searchedTerm}&limit=${postsPerPage}&offset=${
+		(currentPage - 1) * postsPerPage
+	}`;
+	const { data, loading } = useFetch(fetchUrl);
 
 	const handlePaginate = (pageNumber: number) => {
 		setCurrentPage(pageNumber);
@@ -34,16 +34,14 @@ export default function Search() {
 					<CardsContainer
 						className={styles.results}
 						loading={loading}
-						posts={currentPosts}
+						posts={isCharactersData(data)}
 					/>
 
-					{currentPosts > isCharactersData(data).length && (
-						<PaginationButtons
-							totalPosts={isCharactersData(data).length}
-							postsPerPage={postsPerPage}
-							paginate={handlePaginate}
-						/>
-					)}
+					<PaginationButtons
+						totalPosts={hasTotal(data)}
+						postsPerPage={postsPerPage}
+						paginate={handlePaginate}
+					/>
 				</>
 			)}
 
