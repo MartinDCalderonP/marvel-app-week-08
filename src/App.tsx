@@ -17,12 +17,12 @@ export default function App() {
 					<Home />
 				</RouteWithFooter>
 
-				<RouteWithFooter path={`${paths.characters}${paths.page}=:page`}>
+				<RouteWithFooter path={`${paths.characters}${paths.page}:page`}>
 					<Characters />
 				</RouteWithFooter>
 
 				<RouteWithFooter
-					path={`${paths.search}:searchedTerm`}
+					path={`${paths.search}:searchedTerm${paths.page}:page`}
 				>
 					<Search />
 				</RouteWithFooter>
