@@ -11,17 +11,24 @@ import CardsContainer from '../components/CardsContainer';
 import PaginationButtons from '../components/PaginationButtons';
 
 export default function Characters() {
-	const { page } = useParams<IUseParams>();
+	const { searchedTerm, page } = useParams<IUseParams>();
 	const [currentPage, setCurrentPage] = useState<number>(parseInt(page));
 	const postsPerPage = 8;
 	const offset = postsPerPage * (currentPage - 1);
-	const fetchUrl = `${API.characters}?${API.limit}${postsPerPage}&${API.offset}${offset}`;
+	const fetchUrl =
+		`${API.characters}?${API.limit}${postsPerPage}&${API.offset}${offset}` +
+		(searchedTerm ? `&${API.search}${searchedTerm}` : '');
 	const { data, loading } = useFetch(fetchUrl);
 	const history = useHistory();
 
 	const handlePaginate = (pageNumber: number) => {
 		setCurrentPage(pageNumber);
-		history.push(`${paths.characters}${paths.page}${pageNumber}`);
+
+		if (!searchedTerm) {
+			history.push(`${paths.characters}${paths.page}${pageNumber}`);
+		} else {
+			history.push(`${paths.search}${searchedTerm}${paths.page}${pageNumber}`);
+		}
 	};
 
 	return (
@@ -38,6 +45,12 @@ export default function Characters() {
 						paginate={handlePaginate}
 					/>
 				</>
+			)}
+
+			{!loading && searchedTerm && isCharactersData(data).length === 0 && (
+				<h1 className={styles.noResults}>
+					{`No results found for "${searchedTerm.replaceAll('+', ' ')}".`}
+				</h1>
 			)}
 		</div>
 	);
