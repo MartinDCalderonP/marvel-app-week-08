@@ -11,7 +11,7 @@ export default function Characters() {
 	const params = useParams<{ page: string }>();
 	const page = parseInt(params.page) || 1;
 	const charactersUrl = `https://gateway.marvel.com:443/v1/public/characters?limit=8`;
-	const [fetchUrl, setFetchUrl] = useState(charactersUrl);
+	const [fetchUrl, setFetchUrl] = useState<string>(charactersUrl);
 	const { data, loading } = useFetch(fetchUrl);
 	const postsPerPage = 8;
 	const history = useHistory();
