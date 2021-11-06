@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from '../styles/Characters.module.scss';
 import { useHistory, useParams } from 'react-router';
 import { paths } from '../common/enums';
@@ -9,21 +9,16 @@ import PaginationButtons from '../components/PaginationButtons';
 
 export default function Characters() {
 	const params = useParams<{ page: string }>();
-	const page = parseInt(params.page) || 1;
-	const charactersUrl = `https://gateway.marvel.com:443/v1/public/characters?limit=8`;
-	const [fetchUrl, setFetchUrl] = useState<string>(charactersUrl);
-	const { data, loading } = useFetch(fetchUrl);
+	const [currentPage, setCurrentPage] = useState<number>(parseInt(params.page));
 	const postsPerPage = 8;
+	const fetchUrl = `https://gateway.marvel.com:443/v1/public/characters?limit=8&offset=${
+		(currentPage - 1) * postsPerPage
+	}`;
+	const { data, loading } = useFetch(fetchUrl);
 	const history = useHistory();
 
-	useEffect(() => {
-		if (page && page > 1) {
-			setFetchUrl(`${charactersUrl}&offset=${(page - 1) * postsPerPage}`);
-		}
-	}, [page, charactersUrl]);
-
 	const handlePaginate = (pageNumber: number) => {
-		setFetchUrl(charactersUrl + `&offset=${(pageNumber - 1) * postsPerPage}`);
+		setCurrentPage(pageNumber);
 		history.push(`${paths.characters}${paths.page}=${pageNumber}`);
 	};
 
