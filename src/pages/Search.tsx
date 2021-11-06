@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/Search.module.scss';
 import { useParams } from 'react-router-dom';
+import { API } from '../common/enums';
 import { isCharactersData } from '../common/typeGuards';
 import useFetch from '../hooks/useFetch';
 import Spinner from '../components/Spinner';
@@ -9,7 +10,7 @@ import PaginationButtons from '../components/PaginationButtons';
 
 export default function Search() {
 	const { searchedTerm } = useParams<{ searchedTerm: string }>();
-	const fetchUrl = `https://trainee-gamerbox.herokuapp.com/games?name_contains=${searchedTerm}`;
+	const fetchUrl = `${API.characters}?nameStartsWith=${searchedTerm}`;
 	const { data, loading } = useFetch(fetchUrl);
 	const postsPerPage = 8;
 	const [currentPage, setCurrentPage] = useState(1);
