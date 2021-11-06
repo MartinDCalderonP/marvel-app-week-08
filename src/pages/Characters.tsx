@@ -6,6 +6,7 @@ import { IUseParams } from '../common/interfaces';
 import { isCharactersData, hasTotal } from '../common/typeGuards';
 import useFetch from '../hooks/useFetch';
 // import data from '../jsons/characters.json';
+import Spinner from '../components/Spinner';
 import SearchInput from '../components/SearchInput';
 import CardsContainer from '../components/CardsContainer';
 import PaginationButtons from '../components/PaginationButtons';
@@ -26,15 +27,21 @@ export default function Characters() {
 
 	return (
 		<div className={styles.characters}>
-			<SearchInput />
+			{loading && <Spinner />}
 
-			<CardsContainer loading={loading} posts={isCharactersData(data)} />
+			{!loading && isCharactersData(data).length > 0 && (
+				<>
+					<SearchInput />
 
-			<PaginationButtons
-				totalPosts={hasTotal(data)}
-				postsPerPage={postsPerPage}
-				paginate={handlePaginate}
-			/>
+					<CardsContainer loading={loading} posts={isCharactersData(data)} />
+
+					<PaginationButtons
+						totalPosts={hasTotal(data)}
+						postsPerPage={postsPerPage}
+						paginate={handlePaginate}
+					/>
+				</>
+			)}
 		</div>
 	);
 }
