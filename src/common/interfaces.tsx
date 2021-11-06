@@ -97,6 +97,11 @@ export interface IUseParams {
 	stories: string;
 }
 
+export interface ISelect {
+	comics?: boolean;
+	stories?: boolean;
+}
+
 export interface IComic {
 	id: number;
 	digitalId: number;
@@ -171,4 +176,32 @@ export interface Thumbnail {
 export interface URL {
 	type: string;
 	url: string;
+}
+
+export interface IStory {
+	id: number;
+	title: string;
+	description: string;
+	resourceURI: string;
+	type: string;
+	modified: string;
+	thumbnail: null;
+	creators: Characters;
+	characters: Characters;
+	series: Characters;
+	comics: Characters;
+	events: Characters;
+	originalIssue: OriginalIssue;
+}
+
+export interface Characters {
+	available: number;
+	collectionURI: string;
+	items: Item[];
+	returned: number;
+}
+
+export interface OriginalIssue {
+	resourceURI: string;
+	name: string;
 }
