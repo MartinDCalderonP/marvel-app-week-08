@@ -12,11 +12,8 @@ export default function Search() {
 	const { searchedTerm } = useParams<{ searchedTerm: string }>();
 	const [currentPage, setCurrentPage] = useState(1);
 	const postsPerPage = 8;
-	const fetchUrl = `${
-		API.characters
-	}?nameStartsWith=${searchedTerm}&limit=${postsPerPage}&offset=${
-		(currentPage - 1) * postsPerPage
-	}`;
+	const offset = postsPerPage * (currentPage - 1);
+	const fetchUrl = `${API.characters}?${API.search}${searchedTerm}&${API.limit}${postsPerPage}&${API.offset}${offset}`;
 	const { data, loading } = useFetch(fetchUrl);
 
 	const handlePaginate = (pageNumber: number) => {
