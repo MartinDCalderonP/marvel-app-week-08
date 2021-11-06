@@ -5,6 +5,7 @@ import { paths, API } from '../common/enums';
 import { isCharactersData, hasTotal } from '../common/typeGuards';
 import useFetch from '../hooks/useFetch';
 // import data from '../jsons/characters.json';
+import SearchInput from '../components/SearchInput';
 import CardsContainer from '../components/CardsContainer';
 import PaginationButtons from '../components/PaginationButtons';
 
@@ -25,6 +26,8 @@ export default function Characters() {
 
 	return (
 		<div className={styles.characters}>
+			<SearchInput />
+
 			<CardsContainer loading={loading} posts={isCharactersData(data)} />
 
 			<PaginationButtons
