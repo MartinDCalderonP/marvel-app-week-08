@@ -12,15 +12,15 @@ export default function App() {
 	return (
 		<Router>
 			<Switch>
-				<RouteWithFooter exact path="/">
+				<RouteWithFooter exact path={paths.home}>
 					<Home />
 				</RouteWithFooter>
 
-				<RouteWithFooter exact path={`${paths.characters}`}>
+				<RouteWithFooter exact path={paths.characters}>
 					<Characters />
 				</RouteWithFooter>
 
-				<Redirect to={{ pathname: '/' }} />
+				<Redirect to={{ pathname: `${paths.home}` }} />
 			</Switch>
 		</Router>
 	);
