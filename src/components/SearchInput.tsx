@@ -2,7 +2,6 @@ import React, {
 	useState,
 	useReducer,
 	useCallback,
-	memo,
 	ChangeEvent,
 	MouseEvent,
 } from 'react';
@@ -36,7 +35,7 @@ const reducer = (state: typeof initialState, action: actionTypes) => {
 	}
 };
 
-export default memo(function Search() {
+export default function SearchInput() {
 	const [searchedTerm, dispatch] = useReducer(reducer, initialState);
 	const [openSuggestions, setOpenSuggestions] = useState(false);
 	const [pressedKey, setPressedKey] = useState(0);
@@ -76,6 +75,7 @@ export default memo(function Search() {
 		setOpenSuggestions(false);
 	};
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const debouncePressKey = useCallback(
 		_.debounce((e) => {
 			setPressedKey(e);
@@ -117,4 +117,4 @@ export default memo(function Search() {
 			)}
 		</form>
 	);
-});
+}
