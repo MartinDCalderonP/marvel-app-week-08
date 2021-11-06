@@ -13,7 +13,7 @@ export default function Characters() {
 	const params = useParams<{ page: string }>();
 	const [currentPage, setCurrentPage] = useState<number>(parseInt(params.page));
 	const postsPerPage = 8;
-	const fetchUrl = `${API.characters}?limit=8&offset=${
+	const fetchUrl = `${API.characters}?limit=${postsPerPage}&offset=${
 		(currentPage - 1) * postsPerPage
 	}`;
 	const { data, loading } = useFetch(fetchUrl);
