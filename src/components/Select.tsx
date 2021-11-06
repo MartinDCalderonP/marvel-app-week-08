@@ -1,11 +1,11 @@
 import React from 'react';
-import styles from '../styles/ComicsSelect.module.scss';
+import styles from '../styles/Select.module.scss';
 import { API } from '../common/enums';
 import { IComic } from '../common/interfaces';
 import { isComicsData } from '../common/typeGuards';
 import useFetch from '../hooks/useFetch';
 
-export default function ComicsSelect() {
+export default function Select() {
 	const fetchUrl = `${API.comicsUrl}?${API.limit}10`;
 	const { data, loading } = useFetch(fetchUrl);
 
