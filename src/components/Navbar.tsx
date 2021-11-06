@@ -17,7 +17,7 @@ export default function Navbar() {
 			</NavLink>
 
 			<NavLink
-				to={paths.characters}
+				to={`${paths.characters}${paths.page}=1`}
 				className={(isActive) => (isActive ? styles.active : '')}
 			>
 				Characters

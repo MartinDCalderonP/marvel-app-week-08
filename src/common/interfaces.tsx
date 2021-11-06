@@ -47,6 +47,10 @@ export interface ICharacter {
 	urls: URL[];
 }
 
+export interface ICharactersUseParams {
+	page: string;
+}
+
 export interface Comics {
 	available: number;
 	collectionURI: string;

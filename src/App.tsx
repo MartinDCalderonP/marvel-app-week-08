@@ -16,7 +16,7 @@ export default function App() {
 					<Home />
 				</RouteWithFooter>
 
-				<RouteWithFooter exact path={paths.characters}>
+				<RouteWithFooter path={`${paths.characters}${paths.page}=:page`}>
 					<Characters />
 				</RouteWithFooter>
 
