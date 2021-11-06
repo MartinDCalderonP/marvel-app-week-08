@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from '../styles/Characters.module.scss';
 import { useHistory, useParams } from 'react-router';
 import { paths } from '../common/enums';
+import { isCharactersData, hasTotal } from '../common/typeGuards';
 import useFetch from '../hooks/useFetch';
 // import data from '../jsons/characters.json';
 import CardsContainer from '../components/CardsContainer';
@@ -20,14 +21,6 @@ export default function Characters() {
 	const handlePaginate = (pageNumber: number) => {
 		setCurrentPage(pageNumber);
 		history.push(`${paths.characters}${paths.page}=${pageNumber}`);
-	};
-
-	const isCharactersData = (data: any) => {
-		return data?.data && data?.data?.results;
-	};
-
-	const hasTotal = (data: any) => {
-		return data?.data && data?.data?.total;
 	};
 
 	return (
