@@ -1,10 +1,12 @@
 export enum paths {
 	home = '/home',
 	characters = '/characters',
+	comics = '/comics',
+	stories = '/stories',
 	search = '/search_query=',
 	page = '&page=',
-	comics = '&comics=',
-	stories = '&stories=',
+	comic = '&comic=',
+	story = '&story=',
 }
 
 export enum API {
