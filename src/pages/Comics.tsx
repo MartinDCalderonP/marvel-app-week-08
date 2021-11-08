@@ -15,9 +15,16 @@ export default function Comics() {
 	const [currentPage, setCurrentPage] = useState<number>(parseInt(page));
 	const postsPerPage = 8;
 	const offset = postsPerPage * (currentPage - 1);
-	const fetchUrl =
-		`${API.comics}?${API.limit}${postsPerPage}&${API.offset}${offset}` +
-		(searchedTerm ? `&${API.search}${searchedTerm}` : '');
+	let fetchUrl = '';
+
+	if (format) {
+		fetchUrl = `${API.comics}?${API.format}${format}&${API.limit}${postsPerPage}&${API.offset}${offset}`;
+	} else {
+		fetchUrl =
+			`${API.comics}?${API.limit}${postsPerPage}&${API.offset}${offset}` +
+			(searchedTerm ? `&${API.search}${searchedTerm}` : '');
+	}
+
 	const { data, loading } = useFetch(fetchUrl);
 	const history = useHistory();
 

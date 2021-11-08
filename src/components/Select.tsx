@@ -38,9 +38,9 @@ export default function Select({ comics, stories, format }: ISelect) {
 			newUrl = `${paths.characters}${paths.story}${e.target.value}${paths.page}1`;
 		}
 
-		// if (format) {
-		// 	newUrl = `${paths.characters}${paths.format}${e.target.value}`;
-		// }
+		if (format) {
+			newUrl = `${paths.comics}${paths.format}${e.target.value}${paths.page}1`;
+		}
 
 		history.push(newUrl);
 	};

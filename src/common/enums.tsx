@@ -19,4 +19,5 @@ export enum API {
 	search = 'nameStartsWith=',
 	comic = 'comic=',
 	story = 'story=',
+	format = 'format=',
 }

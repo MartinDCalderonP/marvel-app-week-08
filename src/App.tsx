@@ -45,6 +45,12 @@ export default function App() {
 					<Comics />
 				</RouteWithSearch>
 
+				<RouteWithSearch
+					path={`${paths.comics}${paths.format}:format${paths.page}:page`}
+				>
+					<Comics />
+				</RouteWithSearch>
+
 				<RouteWithSearch path={`${paths.stories}${paths.page}:page`}>
 					<Stories />
 				</RouteWithSearch>
