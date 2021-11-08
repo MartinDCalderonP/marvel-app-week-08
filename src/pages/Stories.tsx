@@ -5,7 +5,6 @@ import { paths, API } from '../common/enums';
 import { IUseParams } from '../common/interfaces';
 import { isCorrectData, hasTotal } from '../common/typeGuards';
 import useFetch from '../hooks/useFetch';
-import Select from '../components/Select';
 import Spinner from '../components/Spinner';
 import CardsContainer from '../components/CardsContainer';
 import PaginationButtons from '../components/PaginationButtons';
