@@ -21,11 +21,11 @@ export default function Select({ comics, stories }: ISelect) {
 		let newUrl = '';
 
 		if (comics) {
-			newUrl = `${location.pathname}${paths.comics}${e.target.value}`;
+			newUrl = `${location.pathname}${paths.comic}${e.target.value}`;
 		}
 
 		if (stories) {
-			newUrl = `${location.pathname}${paths.stories}${e.target.value}`;
+			newUrl = `${location.pathname}${paths.story}${e.target.value}`;
 		}
 
 		history.push(newUrl);
