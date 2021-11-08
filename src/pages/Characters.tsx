@@ -11,13 +11,23 @@ import CardsContainer from '../components/CardsContainer';
 import PaginationButtons from '../components/PaginationButtons';
 
 export default function Characters() {
-	const { page, searchedTerm } = useParams<IUseParams>();
+	const { page, searchedTerm, comic, story } = useParams<IUseParams>();
 	const [currentPage, setCurrentPage] = useState<number>(parseInt(page));
 	const postsPerPage = 8;
 	const offset = postsPerPage * (currentPage - 1);
-	const fetchUrl =
-		`${API.characters}?${API.limit}${postsPerPage}&${API.offset}${offset}` +
-		(searchedTerm ? `&${API.search}${searchedTerm}` : '');
+
+	let fetchUrl = '';
+
+	if (comic) {
+		fetchUrl = `${API.comics}/${comic}${paths.characters}?${API.limit}${postsPerPage}&${API.offset}${offset}`;
+	} else if (story) {
+		fetchUrl = `${API.stories}/${story}${paths.characters}?${API.limit}${postsPerPage}&${API.offset}${offset}`;
+	} else {
+		fetchUrl =
+			`${API.characters}?${API.limit}${postsPerPage}&${API.offset}${offset}` +
+			(searchedTerm ? `&${API.search}${searchedTerm}` : '');
+	}
+
 	const { data, loading } = useFetch(fetchUrl);
 	const history = useHistory();
 
@@ -55,6 +65,18 @@ export default function Characters() {
 				{!loading && searchedTerm && isCorrectData(data).length === 0 && (
 					<h1 className={styles.noResults}>
 						{`No results found for "${searchedTerm.replaceAll('+', ' ')}".`}
+					</h1>
+				)}
+
+				{!loading && comic && isCorrectData(data).length === 0 && (
+					<h1 className={styles.noResults}>
+						{`No results found for this comic.`}
+					</h1>
+				)}
+
+				{!loading && story && isCorrectData(data).length === 0 && (
+					<h1 className={styles.noResults}>
+						{`No results found for this story.`}
 					</h1>
 				)}
 			</div>

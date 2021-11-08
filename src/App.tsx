@@ -24,6 +24,18 @@ export default function App() {
 				</RouteWithSearch>
 
 				<RouteWithSearch
+					path={`${paths.characters}${paths.comic}:comic${paths.page}:page`}
+				>
+					<Characters />
+				</RouteWithSearch>
+
+				<RouteWithSearch
+					path={`${paths.characters}${paths.story}:story${paths.page}:page`}
+				>
+					<Characters />
+				</RouteWithSearch>
+
+				<RouteWithSearch
 					path={`${paths.search}:searchedTerm${paths.page}:page`}
 				>
 					<Characters />
