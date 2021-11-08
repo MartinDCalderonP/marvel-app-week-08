@@ -55,7 +55,7 @@ export default function Select({ comics, stories, format }: ISelect) {
 					onChange={handleSelectValueChange}
 				>
 					<option hidden>
-						Select a {format ? 'Format' : comics ? 'Comic' : 'Story'}.
+						Select a {format ? 'Format' : comics ? 'Comic' : 'Story'}
 					</option>
 
 					{!format
