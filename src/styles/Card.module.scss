@@ -21,6 +21,10 @@
 		border-color: var(--hoverDetailsColor);
 	}
 
+	p {
+		overflow: hidden;
+	}
+
 	.cardImage {
 		display: flex;
 		justify-content: center;
@@ -29,7 +33,7 @@
 
 		img {
 			width: 100%;
-			object-fit: fill;
+			object-fit: cover;
 		}
 
 		.defaultImage {
