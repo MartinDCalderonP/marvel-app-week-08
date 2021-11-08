@@ -205,3 +205,7 @@ export interface OriginalIssue {
 	resourceURI: string;
 	name: string;
 }
+
+export interface IPostId {
+	postId: string;
+}
