@@ -212,3 +212,9 @@ export interface OriginalIssue {
 export interface IPostId {
 	postId: string;
 }
+
+export interface ISearchInput {
+	characters?: boolean;
+	comics?: boolean;
+	stories?: boolean;
+}

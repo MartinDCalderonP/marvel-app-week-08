@@ -4,11 +4,16 @@ import styles from '../styles/SearchInput.module.scss';
 import { useHistory } from 'react-router-dom';
 // import _ from 'lodash';
 import { paths } from '../common/enums';
+import { ISearchInput } from '../common/interfaces';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 // import SuggestionsList from './SuggestionsList';
 
-export default function SearchInput() {
+export default function SearchInput({
+	characters,
+	comics,
+	stories,
+}: ISearchInput) {
 	const [searchedTerm, setSearchedTerm] = useState<string>('');
 	// const [openSuggestions, setOpenSuggestions] = useState<boolean>(false);
 	// const [pressedKey, setPressedKey] = useState<number>(0);

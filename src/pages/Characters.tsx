@@ -5,6 +5,7 @@ import { paths, API } from '../common/enums';
 import { IUseParams } from '../common/interfaces';
 import { isCorrectData, hasTotal } from '../common/typeGuards';
 import useFetch from '../hooks/useFetch';
+import SearchInput from '../components/SearchInput';
 import Select from '../components/Select';
 import Spinner from '../components/Spinner';
 import CardsContainer from '../components/CardsContainer';
@@ -52,43 +53,45 @@ export default function Characters() {
 	};
 
 	return (
-		<>
+		<div className={styles.characters}>
+			<SearchInput characters />
+
 			<Select comics />
+
 			<Select stories />
-			<div className={styles.characters}>
-				{loading && <Spinner />}
 
-				{!loading && isCorrectData(data).length > 0 && (
-					<>
-						<CardsContainer loading={loading} posts={isCorrectData(data)} />
+			{loading && <Spinner />}
 
-						<PaginationButtons
-							totalPosts={hasTotal(data)}
-							postsPerPage={postsPerPage}
-							paginate={handlePaginate}
-							currentPage={currentPage}
-						/>
-					</>
-				)}
+			{!loading && isCorrectData(data).length > 0 && (
+				<>
+					<CardsContainer loading={loading} posts={isCorrectData(data)} />
 
-				{!loading && searchedTerm && isCorrectData(data).length === 0 && (
-					<h1 className={styles.noResults}>
-						{`No results found for "${searchedTerm.replaceAll('+', ' ')}".`}
-					</h1>
-				)}
+					<PaginationButtons
+						totalPosts={hasTotal(data)}
+						postsPerPage={postsPerPage}
+						paginate={handlePaginate}
+						currentPage={currentPage}
+					/>
+				</>
+			)}
 
-				{!loading && comic && isCorrectData(data).length === 0 && (
-					<h1 className={styles.noResults}>
-						{`No results found for this comic.`}
-					</h1>
-				)}
+			{!loading && searchedTerm && isCorrectData(data).length === 0 && (
+				<h1 className={styles.noResults}>
+					{`No results found for "${searchedTerm.replaceAll('+', ' ')}".`}
+				</h1>
+			)}
 
-				{!loading && story && isCorrectData(data).length === 0 && (
-					<h1 className={styles.noResults}>
-						{`No results found for this story.`}
-					</h1>
-				)}
-			</div>
-		</>
+			{!loading && comic && isCorrectData(data).length === 0 && (
+				<h1 className={styles.noResults}>
+					{`No results found for this comic.`}
+				</h1>
+			)}
+
+			{!loading && story && isCorrectData(data).length === 0 && (
+				<h1 className={styles.noResults}>
+					{`No results found for this story.`}
+				</h1>
+			)}
+		</div>
 	);
 }

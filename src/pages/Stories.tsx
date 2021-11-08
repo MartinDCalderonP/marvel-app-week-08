@@ -5,6 +5,7 @@ import { paths, API } from '../common/enums';
 import { IUseParams } from '../common/interfaces';
 import { isCorrectData, hasTotal } from '../common/typeGuards';
 import useFetch from '../hooks/useFetch';
+import SearchInput from '../components/SearchInput';
 import Spinner from '../components/Spinner';
 import CardsContainer from '../components/CardsContainer';
 import PaginationButtons from '../components/PaginationButtons';
@@ -34,6 +35,8 @@ export default function Stories() {
 
 	return (
 		<div className={styles.stories}>
+			<SearchInput stories />
+
 			{loading && <Spinner />}
 
 			{!loading && isCorrectData(data).length > 0 && (

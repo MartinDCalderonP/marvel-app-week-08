@@ -5,6 +5,7 @@ import { paths, API } from '../common/enums';
 import { IUseParams } from '../common/interfaces';
 import { isCorrectData, hasTotal } from '../common/typeGuards';
 import useFetch from '../hooks/useFetch';
+import SearchInput from '../components/SearchInput';
 import Select from '../components/Select';
 import Spinner from '../components/Spinner';
 import CardsContainer from '../components/CardsContainer';
@@ -41,31 +42,31 @@ export default function Comics() {
 	};
 
 	return (
-		<>
+		<div className={styles.comics}>
+			<SearchInput comics />
+
 			<Select comics format />
 
-			<div className={styles.comics}>
-				{loading && <Spinner />}
+			{loading && <Spinner />}
 
-				{!loading && isCorrectData(data).length > 0 && (
-					<>
-						<CardsContainer loading={loading} posts={isCorrectData(data)} />
+			{!loading && isCorrectData(data).length > 0 && (
+				<>
+					<CardsContainer loading={loading} posts={isCorrectData(data)} />
 
-						<PaginationButtons
-							totalPosts={hasTotal(data)}
-							postsPerPage={postsPerPage}
-							paginate={handlePaginate}
-							currentPage={currentPage}
-						/>
-					</>
-				)}
+					<PaginationButtons
+						totalPosts={hasTotal(data)}
+						postsPerPage={postsPerPage}
+						paginate={handlePaginate}
+						currentPage={currentPage}
+					/>
+				</>
+			)}
 
-				{!loading && searchedTerm && isCorrectData(data).length === 0 && (
-					<h1 className={styles.noResults}>
-						{`No results found for "${searchedTerm.replaceAll('+', ' ')}".`}
-					</h1>
-				)}
-			</div>
-		</>
+			{!loading && searchedTerm && isCorrectData(data).length === 0 && (
+				<h1 className={styles.noResults}>
+					{`No results found for "${searchedTerm.replaceAll('+', ' ')}".`}
+				</h1>
+			)}
+		</div>
 	);
 }
