@@ -25,7 +25,19 @@ export default function SearchInput({
 	};
 
 	const searchTerm = (term: string) => {
-		history.push(`${paths.search}${term.replaceAll(' ', '+')}${paths.page}1`);
+		let section = '';
+
+		if (characters) {
+			section = paths.characters;
+		} else if (comics) {
+			section = paths.comics;
+		} else if (stories) {
+			section = paths.stories;
+		}
+
+		history.push(
+			`${section}${paths.search}${term.replaceAll(' ', '+')}${paths.page}1`
+		);
 	};
 
 	const handleSearchButtonClick = (e: MouseEvent<HTMLButtonElement>) => {

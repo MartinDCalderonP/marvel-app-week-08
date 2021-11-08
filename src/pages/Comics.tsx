@@ -23,7 +23,7 @@ export default function Comics() {
 	} else {
 		fetchUrl =
 			`${API.comics}?${API.limit}${postsPerPage}&${API.offset}${offset}` +
-			(searchedTerm ? `&${API.search}${searchedTerm}` : '');
+			(searchedTerm ? `&${API.comicsSearch}${searchedTerm}` : '');
 	}
 
 	const { data, loading } = useFetch(fetchUrl);
@@ -35,7 +35,7 @@ export default function Comics() {
 		let newUrl = `${paths.comics}${paths.page}${pageNumber}`;
 
 		if (searchedTerm) {
-			newUrl = `${paths.search}${searchedTerm}${paths.page}${pageNumber}`;
+			newUrl = `${paths.comics}${paths.search}${searchedTerm}${paths.page}${pageNumber}`;
 		}
 
 		history.push(newUrl);
@@ -51,7 +51,11 @@ export default function Comics() {
 
 			{!loading && isCorrectData(data).length > 0 && (
 				<>
-					<CardsContainer loading={loading} posts={isCorrectData(data)} />
+					<CardsContainer
+						loading={loading}
+						posts={isCorrectData(data)}
+						comics
+					/>
 
 					<PaginationButtons
 						totalPosts={hasTotal(data)}

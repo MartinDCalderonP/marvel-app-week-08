@@ -26,7 +26,7 @@ export default function Characters() {
 	} else {
 		fetchUrl =
 			`${API.characters}?${API.limit}${postsPerPage}&${API.offset}${offset}` +
-			(searchedTerm ? `&${API.search}${searchedTerm}` : '');
+			(searchedTerm ? `&${API.charactersSearch}${searchedTerm}` : '');
 	}
 
 	const { data, loading } = useFetch(fetchUrl);
@@ -64,7 +64,11 @@ export default function Characters() {
 
 			{!loading && isCorrectData(data).length > 0 && (
 				<>
-					<CardsContainer loading={loading} posts={isCorrectData(data)} />
+					<CardsContainer
+						loading={loading}
+						posts={isCorrectData(data)}
+						characters
+					/>
 
 					<PaginationButtons
 						totalPosts={hasTotal(data)}

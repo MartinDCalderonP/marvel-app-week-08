@@ -17,7 +17,7 @@ export default function Stories() {
 	const offset = postsPerPage * (currentPage - 1);
 	const fetchUrl =
 		`${API.stories}?${API.limit}${postsPerPage}&${API.offset}${offset}` +
-		(searchedTerm ? `&${API.search}${searchedTerm}` : '');
+		(searchedTerm ? `&${API.storiesSearch}${searchedTerm}` : '');
 	const { data, loading } = useFetch(fetchUrl);
 	const history = useHistory();
 
@@ -27,7 +27,7 @@ export default function Stories() {
 		let newUrl = `${paths.stories}${paths.page}${pageNumber}`;
 
 		if (searchedTerm) {
-			newUrl = `${paths.search}${searchedTerm}${paths.page}${pageNumber}`;
+			newUrl = `${paths.stories}${paths.search}${searchedTerm}${paths.page}${pageNumber}`;
 		}
 
 		history.push(newUrl);
@@ -41,7 +41,11 @@ export default function Stories() {
 
 			{!loading && isCorrectData(data).length > 0 && (
 				<>
-					<CardsContainer loading={loading} posts={isCorrectData(data)} />
+					<CardsContainer
+						loading={loading}
+						posts={isCorrectData(data)}
+						stories
+					/>
 
 					<PaginationButtons
 						totalPosts={hasTotal(data)}

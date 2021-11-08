@@ -9,6 +9,9 @@ export default function CardsContainer({
 	className,
 	loading,
 	posts,
+	characters,
+	comics,
+	stories,
 }: ICardsContainer) {
 	return (
 		<div className={styles.cardsContainer + (className ? ` ${className}` : '')}>
@@ -22,6 +25,9 @@ export default function CardsContainer({
 						id={post.id}
 						name={post.name || post.title}
 						thumbnail={post.thumbnail?.path + '.' + post.thumbnail?.extension}
+						characters={characters}
+						comics={comics}
+						stories={stories}
 					/>
 				))}
 		</div>
