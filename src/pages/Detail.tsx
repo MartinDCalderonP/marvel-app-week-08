@@ -14,9 +14,9 @@ export default function Detail({ character, comic, story }: IDetail) {
 	if (character) {
 		fetchUrl = `${API.characters}/${id}?`;
 	} else if (comic) {
-		fetchUrl = `${API.comics}/${id}`;
+		fetchUrl = `${API.comics}/${id}?`;
 	} else if (story) {
-		fetchUrl = `${API.stories}/${id}`;
+		fetchUrl = `${API.stories}/${id}?`;
 	}
 
 	const { data: detailData, loading: detailLoading } = useFetch(fetchUrl);
@@ -27,23 +27,33 @@ export default function Detail({ character, comic, story }: IDetail) {
 
 			{!detailLoading && detailData && (
 				<>
-					<h1>{isCorrectData(detailData)[0].name}</h1>
-
+					<h1>
+						{isCorrectData(detailData)[0].name ||
+							isCorrectData(detailData)[0].title}
+					</h1>
 					<div className={styles.row}>
 						<div className={styles.leftColumn}>
-							<div className={styles.image}>
-								<img
-									src={
-										isCorrectData(detailData)[0].thumbnail.path +
-										'.' +
-										isCorrectData(detailData)[0].thumbnail.extension
-									}
-									alt={isCorrectData(detailData)[0].name}
-								/>
-							</div>
-							<div className={styles.description}>
-								<p>{isCorrectData(detailData)[0].description}</p>
-							</div>
+							{isCorrectData(detailData)[0].thumbnail && (
+								<div className={styles.image}>
+									<img
+										src={
+											isCorrectData(detailData)[0].thumbnail.path +
+											'.' +
+											isCorrectData(detailData)[0].thumbnail.extension
+										}
+										alt={
+											isCorrectData(detailData)[0].name ||
+											isCorrectData(detailData)[0].title
+										}
+									/>
+								</div>
+							)}
+
+							{isCorrectData(detailData)[0].description && (
+								<div className={styles.description}>
+									<p>{isCorrectData(detailData)[0].description}</p>
+								</div>
+							)}
 						</div>
 
 						<div className={styles.dividerColumn}></div>
@@ -54,27 +64,73 @@ export default function Detail({ character, comic, story }: IDetail) {
 
 								<p>
 									<b>Name: </b>
-									{isCorrectData(detailData)[0].name}
+									{isCorrectData(detailData)[0].name ||
+										isCorrectData(detailData)[0].title}
 								</p>
 							</div>
 						</div>
 					</div>
+					{character && (
+						<>
+							<h2>Character's Comics</h2>
 
-					<h2>Character's Comics</h2>
+							<ul>
+								{isCorrectData(detailData)[0].comics.items.map((item: any) => (
+									<li key={item.name}>{item.name}</li>
+								))}
+							</ul>
 
-					<ul>
-						{isCorrectData(detailData)[0].comics.items.map((item: any) => (
-							<li key={item.name}>{item.name}</li>
-						))}
-					</ul>
+							<h2>Character's Stories</h2>
 
-					<h2>Character's Stories</h2>
+							<ul>
+								{isCorrectData(detailData)[0].stories.items.map((item: any) => (
+									<li key={item.name}>{item.name}</li>
+								))}
+							</ul>
+						</>
+					)}
+					{comic && (
+						<>
+							<h2>Comic's Characters</h2>
 
-					<ul>
-						{isCorrectData(detailData)[0].stories.items.map((item: any) => (
-							<li key={item.name}>{item.name}</li>
-						))}
-					</ul>
+							<ul>
+								{isCorrectData(detailData)[0].characters.items.map(
+									(item: any) => (
+										<li key={item.name}>{item.name}</li>
+									)
+								)}
+							</ul>
+
+							<h2>Comic's Stories</h2>
+
+							<ul>
+								{isCorrectData(detailData)[0].stories.items.map((item: any) => (
+									<li key={item.name}>{item.name}</li>
+								))}
+							</ul>
+						</>
+					)}
+					{story && (
+						<>
+							<h2>Story's Characters</h2>
+
+							<ul>
+								{isCorrectData(detailData)[0].characters.items.map(
+									(item: any) => (
+										<li key={item.name}>{item.name}</li>
+									)
+								)}
+							</ul>
+
+							<h2>Story's Comics</h2>
+
+							<ul>
+								{isCorrectData(detailData)[0].comics.items.map((item: any) => (
+									<li key={item.name}>{item.name}</li>
+								))}
+							</ul>
+						</>
+					)}
 				</>
 			)}
 		</div>

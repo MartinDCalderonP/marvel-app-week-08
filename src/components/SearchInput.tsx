@@ -1,13 +1,10 @@
 import React, { useState, ChangeEvent, MouseEvent } from 'react';
-// ^ useCallback
 import styles from '../styles/SearchInput.module.scss';
 import { useHistory } from 'react-router-dom';
-// import _ from 'lodash';
 import { paths } from '../common/enums';
 import { ISearchInput } from '../common/interfaces';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-// import SuggestionsList from './SuggestionsList';
 
 export default function SearchInput({
 	characters,
@@ -15,13 +12,10 @@ export default function SearchInput({
 	stories,
 }: ISearchInput) {
 	const [searchedTerm, setSearchedTerm] = useState<string>('');
-	// const [openSuggestions, setOpenSuggestions] = useState<boolean>(false);
-	// const [pressedKey, setPressedKey] = useState<number>(0);
 	const history = useHistory();
 
 	const handleSearchedTermChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setSearchedTerm(e.target.value);
-		// setOpenSuggestions(true);
 	};
 
 	const searchTerm = (term: string) => {
@@ -48,34 +42,12 @@ export default function SearchInput({
 		}
 	};
 
-	// const handleSuggestionSelected = (suggestionSelected: string) => {
-	// 	setSearchedTerm(suggestionSelected);
-	// 	searchTerm(suggestionSelected);
-	// };
-
-	// const handleCloseSuggestions = () => {
-	// 	setOpenSuggestions(false);
-	// };
-
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// const debouncePressKey = useCallback(
-	// 	_.debounce((e) => {
-	// 		setPressedKey(e);
-	// 	}, 500),
-	// 	[setPressedKey]
-	// );
-
-	// const handleKeyNavigation = (e: any) => {
-	// 	debouncePressKey(e);
-	// };
-
 	return (
 		<form className={styles.searchForm} autoComplete="off">
 			<div className={styles.searchInput}>
 				<input
 					value={searchedTerm}
 					onChange={handleSearchedTermChange}
-					// onKeyDown={handleKeyNavigation}
 					type="text"
 					name="search"
 					placeholder="Search"
@@ -88,15 +60,6 @@ export default function SearchInput({
 					<FontAwesomeIcon icon={faSearch} />
 				</button>
 			</div>
-
-			{/* {openSuggestions && (
-				<SuggestionsList
-					searchedTerm={searchedTerm}
-					suggestionSelected={handleSuggestionSelected}
-					closeSuggestions={handleCloseSuggestions}
-					pressedKey={pressedKey}
-				/>
-			)} */}
 		</form>
 	);
 }

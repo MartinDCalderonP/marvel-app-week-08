@@ -90,13 +90,6 @@ export interface URL {
 	url: string;
 }
 
-export interface ISuggestionsList {
-	searchedTerm: string;
-	suggestionSelected: (suggestionSelected: string) => void;
-	closeSuggestions: (closeSuggestions: boolean) => void;
-	pressedKey: any;
-}
-
 export interface IUseParams {
 	page: string;
 	searchedTerm: string;
