@@ -10,12 +10,12 @@ export enum paths {
 }
 
 export enum API {
-	charactersUrl = 'https://gateway.marvel.com/v1/public/characters',
-	comicsUrl = 'https://gateway.marvel.com/v1/public/comics',
-	storiesUrl = 'https://gateway.marvel.com/v1/public/stories',
+	characters = 'https://gateway.marvel.com/v1/public/characters',
+	comics = 'https://gateway.marvel.com/v1/public/comics',
+	stories = 'https://gateway.marvel.com/v1/public/stories',
 	limit = 'limit=',
 	offset = 'offset=',
 	search = 'nameStartsWith=',
-	comics = 'comics=',
-	stories = 'stories=',
+	comic = 'comic=',
+	story = 'story=',
 }

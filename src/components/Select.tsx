@@ -8,8 +8,8 @@ import useFetch from '../hooks/useFetch';
 
 export default function Select({ comics, stories }: ISelect) {
 	const fetchUrl = comics
-		? `${API.comicsUrl}?${API.limit}10`
-		: `${API.storiesUrl}?${API.limit}10`;
+		? `${API.comics}?${API.limit}10`
+		: `${API.stories}?${API.limit}10`;
 	const { data, loading } = useFetch(fetchUrl);
 	const [selectedValue, setSelectedValue] = useState<string>('');
 	const history = useHistory();
