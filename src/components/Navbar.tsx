@@ -24,14 +24,14 @@ export default function Navbar() {
 			</NavLink>
 
 			<NavLink
-				to={paths.comics}
+				to={`${paths.comics}${paths.page}1`}
 				className={(isActive) => (isActive ? styles.active : '')}
 			>
 				Comics
 			</NavLink>
 
 			<NavLink
-				to={paths.stories}
+				to={`${paths.stories}${paths.page}1`}
 				className={(isActive) => (isActive ? styles.active : '')}
 			>
 				Stories
