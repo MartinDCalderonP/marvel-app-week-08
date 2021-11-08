@@ -7,6 +7,7 @@ export enum paths {
 	page = '&page=',
 	comic = '&comic=',
 	story = '&story=',
+	format = '&format=',
 }
 
 export enum API {
