@@ -11,9 +11,11 @@ export default function Card({ id, name, thumbnail }: ICard) {
 			to={`${paths.characters}/${id}`}
 		>
 			<p>{name}</p>
-			<div className={styles.cardImage}>
-				<img src={thumbnail} alt={name} />
-			</div>
+			{thumbnail !== 'undefined.undefined' && (
+				<div className={styles.cardImage}>
+					<img src={thumbnail} alt={name} />
+				</div>
+			)}
 		</Link>
 	);
 }

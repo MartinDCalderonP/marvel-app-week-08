@@ -7,6 +7,7 @@ import RouteWithSearch from './components/RouteWithSearch';
 import Home from './pages/Home';
 import Characters from './pages/Characters';
 import Comics from './pages/Comics';
+import Stories from './pages/Stories';
 
 export default function App() {
 	// const { state, dispatch } = useCounter();
@@ -30,6 +31,10 @@ export default function App() {
 
 				<RouteWithSearch path={`${paths.comics}${paths.page}:page`}>
 					<Comics />
+				</RouteWithSearch>
+
+				<RouteWithSearch path={`${paths.stories}${paths.page}:page`}>
+					<Stories />
 				</RouteWithSearch>
 
 				<Redirect to={{ pathname: `${paths.home}` }} />
