@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../styles/Comics.module.scss';
+import styles from '../styles/Stories.module.scss';
 import { useParams, useHistory } from 'react-router';
 import { paths, API } from '../common/enums';
 import { IUseParams } from '../common/interfaces';
@@ -23,7 +23,7 @@ export default function Stories() {
 	const handlePaginate = (pageNumber: number) => {
 		setCurrentPage(pageNumber);
 
-		let newUrl = `${paths.comics}${paths.page}${pageNumber}`;
+		let newUrl = `${paths.stories}${paths.page}${pageNumber}`;
 
 		if (searchedTerm) {
 			newUrl = `${paths.search}${searchedTerm}${paths.page}${pageNumber}`;
