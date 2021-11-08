@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 // import { useCounter } from './context/Context';
 import { paths } from './common/enums';
-import RouteWithoutSearch from './components/RouteWithoutSearch';
-import RouteWithSearch from './components/RouteWithSearch';
+import RouteWithoutFooter from './components/RouteWithoutFooter';
+import RouteWithFooter from './components/RouteWithFooter';
 import Home from './pages/Home';
 import Characters from './pages/Characters';
 import Comics from './pages/Comics';
@@ -15,45 +15,45 @@ export default function App() {
 	return (
 		<Router>
 			<Switch>
-				<RouteWithoutSearch exact path={paths.home}>
+				<RouteWithoutFooter exact path={paths.home}>
 					<Home />
-				</RouteWithoutSearch>
+				</RouteWithoutFooter>
 
-				<RouteWithSearch path={`${paths.characters}${paths.page}:page`}>
+				<RouteWithFooter path={`${paths.characters}${paths.page}:page`}>
 					<Characters />
-				</RouteWithSearch>
+				</RouteWithFooter>
 
-				<RouteWithSearch
+				<RouteWithFooter
 					path={`${paths.characters}${paths.comic}:comic${paths.page}:page`}
 				>
 					<Characters />
-				</RouteWithSearch>
+				</RouteWithFooter>
 
-				<RouteWithSearch
+				<RouteWithFooter
 					path={`${paths.characters}${paths.story}:story${paths.page}:page`}
 				>
 					<Characters />
-				</RouteWithSearch>
+				</RouteWithFooter>
 
-				<RouteWithSearch
+				<RouteWithFooter
 					path={`${paths.search}:searchedTerm${paths.page}:page`}
 				>
 					<Characters />
-				</RouteWithSearch>
+				</RouteWithFooter>
 
-				<RouteWithSearch path={`${paths.comics}${paths.page}:page`}>
+				<RouteWithFooter path={`${paths.comics}${paths.page}:page`}>
 					<Comics />
-				</RouteWithSearch>
+				</RouteWithFooter>
 
-				<RouteWithSearch
+				<RouteWithFooter
 					path={`${paths.comics}${paths.format}:format${paths.page}:page`}
 				>
 					<Comics />
-				</RouteWithSearch>
+				</RouteWithFooter>
 
-				<RouteWithSearch path={`${paths.stories}${paths.page}:page`}>
+				<RouteWithFooter path={`${paths.stories}${paths.page}:page`}>
 					<Stories />
-				</RouteWithSearch>
+				</RouteWithFooter>
 
 				<Redirect to={{ pathname: `${paths.home}` }} />
 			</Switch>
