@@ -21,6 +21,7 @@ export interface IPaginationButtons {
 	totalPosts: number;
 	postsPerPage: number;
 	paginate: (paginate: number) => void;
+	currentPage: number;
 }
 
 export interface ICard {
@@ -95,6 +96,7 @@ export interface IUseParams {
 	searchedTerm: string;
 	comic: string;
 	story: string;
+	format: string;
 }
 
 export interface ISelect {

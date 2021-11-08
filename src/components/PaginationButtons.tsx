@@ -6,8 +6,8 @@ export default function PaginationButtons({
 	totalPosts,
 	postsPerPage,
 	paginate,
+	currentPage,
 }: IPaginationButtons) {
-	const [currentPage, setCurrentPage] = useState(1);
 	const pagesNumbers = useMemo(() => {
 		return Array.from(
 			{ length: Math.ceil(totalPosts / postsPerPage) },
@@ -17,7 +17,6 @@ export default function PaginationButtons({
 
 	const handlePageButtonClick = (pageNumber: number) => {
 		paginate(pageNumber);
-		setCurrentPage(pageNumber);
 	};
 
 	return (

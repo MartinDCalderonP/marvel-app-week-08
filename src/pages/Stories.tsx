@@ -44,6 +44,7 @@ export default function Stories() {
 						totalPosts={hasTotal(data)}
 						postsPerPage={postsPerPage}
 						paginate={handlePaginate}
+						currentPage={currentPage}
 					/>
 				</>
 			)}

@@ -40,6 +40,14 @@ export default function Characters() {
 			newUrl = `${paths.search}${searchedTerm}${paths.page}${pageNumber}`;
 		}
 
+		if (comic) {
+			newUrl = `${paths.characters}${paths.comic}${comic}${paths.page}${pageNumber}`;
+		}
+
+		if (story) {
+			newUrl = `${paths.characters}${paths.story}${story}${paths.page}${pageNumber}`;
+		}
+
 		history.push(newUrl);
 	};
 
@@ -58,6 +66,7 @@ export default function Characters() {
 							totalPosts={hasTotal(data)}
 							postsPerPage={postsPerPage}
 							paginate={handlePaginate}
+							currentPage={currentPage}
 						/>
 					</>
 				)}

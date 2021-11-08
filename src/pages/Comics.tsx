@@ -11,7 +11,7 @@ import CardsContainer from '../components/CardsContainer';
 import PaginationButtons from '../components/PaginationButtons';
 
 export default function Comics() {
-	const { page, searchedTerm } = useParams<IUseParams>();
+	const { page, searchedTerm, format } = useParams<IUseParams>();
 	const [currentPage, setCurrentPage] = useState<number>(parseInt(page));
 	const postsPerPage = 8;
 	const offset = postsPerPage * (currentPage - 1);
@@ -48,6 +48,7 @@ export default function Comics() {
 							totalPosts={hasTotal(data)}
 							postsPerPage={postsPerPage}
 							paginate={handlePaginate}
+							currentPage={currentPage}
 						/>
 					</>
 				)}
