@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Characters from './pages/Characters';
 import Comics from './pages/Comics';
 import Stories from './pages/Stories';
+import Detail from './pages/Detail';
 
 export default function App() {
 	// const { state, dispatch } = useCounter();
@@ -65,6 +66,18 @@ export default function App() {
 					path={`${paths.stories}${paths.search}:searchedTerm${paths.page}:page`}
 				>
 					<Stories />
+				</RouteWithFooter>
+
+				<RouteWithFooter path={`${paths.characters}/:id`}>
+					<Detail character />
+				</RouteWithFooter>
+
+				<RouteWithFooter path={`${paths.comics}/:id`}>
+					<Detail comic />
+				</RouteWithFooter>
+
+				<RouteWithFooter path={`${paths.stories}/:id`}>
+					<Detail story />
 				</RouteWithFooter>
 
 				<Redirect to={{ pathname: `${paths.home}` }} />

@@ -224,3 +224,9 @@ export interface ISearchInput {
 	comics?: boolean;
 	stories?: boolean;
 }
+
+export interface IDetail {
+	character?: boolean;
+	comic?: boolean;
+	story?: boolean;
+}

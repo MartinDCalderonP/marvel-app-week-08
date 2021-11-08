@@ -1,36 +1,48 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from '../styles/Detail.module.scss';
 import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
-import { IPostId } from '../common/interfaces';
+import { API } from '../common/enums';
+import { IDetail } from '../common/interfaces';
 import { isCorrectData } from '../common/typeGuards';
 import Spinner from '../components/Spinner';
 
-export default function Detail() {
-	const { postId } = useParams<IPostId>();
-	const fetchUrl = `https://trainee-gamerbox.herokuapp.com/games/${postId}`;
-	const { data, loading } = useFetch(fetchUrl);
-	const [updater, setUpdater] = useState(0);
+export default function Detail({ character, comic, story }: IDetail) {
+	const { id } = useParams<{ id: string }>();
+	let fetchUrl = '';
 
-	const handleUpdateFetchData = () => {
-		setUpdater((current) => current + 1);
-	};
+	if (character) {
+		fetchUrl = `${API.characters}/${id}?`;
+	} else if (comic) {
+		fetchUrl = `${API.comics}/${id}`;
+	} else if (story) {
+		fetchUrl = `${API.stories}/${id}`;
+	}
+
+	const { data: detailData, loading: detailLoading } = useFetch(fetchUrl);
 
 	return (
 		<div className={styles.detailPage}>
-			{loading && <Spinner />}
+			{detailLoading && <Spinner />}
 
-			{!loading && data && (
+			{!detailLoading && detailData && (
 				<>
-					<h1>{isCorrectData(data).name}</h1>
+					<h1>{isCorrectData(detailData)[0].name}</h1>
 
 					<div className={styles.row}>
 						<div className={styles.leftColumn}>
 							<div className={styles.image}>
 								<img
-									src={isCorrectData(data).cover_art?.url}
-									alt={isCorrectData(data).name}
+									src={
+										isCorrectData(detailData)[0].thumbnail.path +
+										'.' +
+										isCorrectData(detailData)[0].thumbnail.extension
+									}
+									alt={isCorrectData(detailData)[0].name}
 								/>
+							</div>
+							<div className={styles.description}>
+								<p>{isCorrectData(detailData)[0].description}</p>
 							</div>
 						</div>
 
@@ -38,32 +50,31 @@ export default function Detail() {
 
 						<div className={styles.rightColumn}>
 							<div className={styles.information}>
-								<h3>Game Details</h3>
+								<h3>Information</h3>
 
 								<p>
-									<b>Title: </b>
-									{isCorrectData(data).name}
+									<b>Name: </b>
+									{isCorrectData(detailData)[0].name}
 								</p>
-
-								<p>
-									<b>Genre: </b>
-									{isCorrectData(data).genre.name}
-								</p>
-
-								{isCorrectData(data).publishers.length > 0 && (
-									<p>
-										<b>Publisher: </b>
-									</p>
-								)}
-
-								{isCorrectData(data).platforms.length > 0 && (
-									<p>
-										<b>Platoforms: </b>
-									</p>
-								)}
 							</div>
 						</div>
 					</div>
+
+					<h2>Character's Comics</h2>
+
+					<ul>
+						{isCorrectData(detailData)[0].comics.items.map((item: any) => (
+							<li key={item.name}>{item.name}</li>
+						))}
+					</ul>
+
+					<h2>Character's Stories</h2>
+
+					<ul>
+						{isCorrectData(detailData)[0].stories.items.map((item: any) => (
+							<li key={item.name}>{item.name}</li>
+						))}
+					</ul>
 				</>
 			)}
 		</div>
