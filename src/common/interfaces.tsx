@@ -93,8 +93,8 @@ export interface ISuggestionsList {
 export interface IUseParams {
 	page: string;
 	searchedTerm: string;
-	comic: string;
-	story: string;
+	comicId: string;
+	storyId: string;
 }
 
 export interface ISelect {
