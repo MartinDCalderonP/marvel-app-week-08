@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styles from '../styles/Card.module.scss';
 import { Link } from 'react-router-dom';
 import { ICard } from '../common/interfaces';
 import { paths } from '../common/enums';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { actionTypes } from '../context/Context';
 
 export default function Card({
 	id,
