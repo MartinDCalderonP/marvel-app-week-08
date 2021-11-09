@@ -20,11 +20,11 @@ export interface ICardsContainer {
 	stories?: boolean;
 }
 
-export interface IPaginationButtons {
-	totalPosts: number;
-	postsPerPage: number;
+export interface IPaginationButtons<T> {
+	totalPosts: T;
+	postsPerPage: T;
 	paginate: (paginate: number) => void;
-	currentPage: number;
+	currentPage: T;
 }
 
 export interface ICard {

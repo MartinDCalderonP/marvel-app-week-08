@@ -2,15 +2,15 @@ import React, { useMemo } from 'react';
 import styles from '../styles/PaginationButtons.module.scss';
 import { IPaginationButtons } from '../common/interfaces';
 
-export default function PaginationButtons({
+export default function PaginationButtons<T>({
 	totalPosts,
 	postsPerPage,
 	paginate,
 	currentPage,
-}: IPaginationButtons) {
+}: IPaginationButtons<T>) {
 	const pagesNumbers = useMemo(() => {
 		return Array.from(
-			{ length: Math.ceil(totalPosts / postsPerPage) },
+			{ length: Math.ceil(+totalPosts / +postsPerPage) },
 			(_, i) => 1 + i
 		);
 	}, [totalPosts, postsPerPage]);
@@ -25,7 +25,7 @@ export default function PaginationButtons({
 				<button
 					className={
 						styles.pageButton +
-						(currentPage === pageNumber ? ` ${styles.active}` : '')
+						(+currentPage === pageNumber ? ` ${styles.active}` : '')
 					}
 					key={`paginationButton${pageNumber}`}
 					onClick={() => handlePageButtonClick(pageNumber)}
