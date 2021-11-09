@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
-// import { useCounter } from './context/Context';
 import { paths } from './common/enums';
 import RouteWithoutFooter from './components/RouteWithoutFooter';
 import RouteWithFooter from './components/RouteWithFooter';
@@ -9,10 +8,9 @@ import Characters from './pages/Characters';
 import Comics from './pages/Comics';
 import Stories from './pages/Stories';
 import Detail from './pages/Detail';
+import Bookmarks from './pages/Bookmarks';
 
 export default function App() {
-	// const { state, dispatch } = useCounter();
-
 	return (
 		<Router>
 			<Switch>
@@ -78,6 +76,10 @@ export default function App() {
 
 				<RouteWithFooter path={`${paths.stories}/:id`}>
 					<Detail story />
+				</RouteWithFooter>
+
+				<RouteWithFooter path={paths.bookmarks}>
+					<Bookmarks />
 				</RouteWithFooter>
 
 				<Redirect to={{ pathname: `${paths.home}` }} />

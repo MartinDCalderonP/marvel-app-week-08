@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from '../styles/Card.module.scss';
 import { Link } from 'react-router-dom';
 import { ICard } from '../common/interfaces';
 import { paths } from '../common/enums';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { actionTypes } from '../context/Context';
 
 export default function Card({
 	id,
@@ -22,14 +25,23 @@ export default function Card({
 		newUrl = `${paths.stories}/${id}`;
 	}
 
+	const handleHeartIconClick = () => {
+		console.log('Heart Clicked');
+	};
+
 	return (
 		<Link className={`${styles.card} ${styles.appearCard}`} to={newUrl}>
-			<p>{name}</p>
+			<FontAwesomeIcon
+				icon={faHeart}
+				className={styles.heartIcon}
+				onClick={handleHeartIconClick}
+			/>
 			{thumbnail !== 'undefined.undefined' && (
 				<div className={styles.cardImage}>
 					<img src={thumbnail} alt={name} />
 				</div>
 			)}
+			<p>{name}</p>
 		</Link>
 	);
 }

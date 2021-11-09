@@ -36,6 +36,13 @@ export default function Navbar() {
 			>
 				Stories
 			</NavLink>
+
+			<NavLink
+				to={paths.bookmarks}
+				className={(isActive) => (isActive ? styles.active : '')}
+			>
+				Bookmarks
+			</NavLink>
 		</nav>
 	);
 }

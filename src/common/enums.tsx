@@ -3,6 +3,7 @@ export enum paths {
 	characters = '/characters',
 	comics = '/comics',
 	stories = '/stories',
+	bookmarks = '/bookmarks',
 	search = '/search_query=',
 	page = '&page=',
 	comic = '&comic=',

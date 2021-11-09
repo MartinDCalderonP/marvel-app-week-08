@@ -2,22 +2,30 @@ import { createContext, useReducer, useContext, ReactNode } from 'react';
 import { Action, State, Context } from '../common/types';
 
 const initialState = {
-	count: 0,
+	bookmarks: {
+		characters: [],
+		comics: [],
+		stories: [],
+	},
+};
+export const actionTypes = {
+	ADD_BOOKMARKS: 'ADD_BOOKMARKS',
+	REMOVE_BOOKMARK: 'REMOVE_BOOKMARK',
 };
 
 const CounterContext = createContext<Context>({} as Context);
 
-function counterReducer(state: State, action: Action) {
-	switch (action) {
-		case 'increment':
+function reducer(state: State, action: Action) {
+	switch (action.type) {
+		case actionTypes.ADD_BOOKMARKS:
 			return {
 				...state,
-				count: state.count + 1,
+				bookmarks: action.bookmarks,
 			};
-		case 'decrement':
+		case actionTypes.REMOVE_BOOKMARK:
 			return {
 				...state,
-				count: state.count - 1,
+				bookmarks: action.bookmarks,
 			};
 		default:
 			throw new Error();
@@ -25,7 +33,7 @@ function counterReducer(state: State, action: Action) {
 }
 
 export function CounterProvider({ children }: { children: ReactNode }) {
-	const [state, dispatch] = useReducer(counterReducer, initialState);
+	const [state, dispatch] = useReducer<any>(reducer, initialState);
 
 	return (
 		<CounterContext.Provider value={{ state, dispatch }}>

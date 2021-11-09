@@ -1,4 +1,4 @@
-export type Action = 'increment' | 'decrement';
+export type Action = any;
 export type Dispatch = (action: Action) => void;
-export type State = { count: number };
+export type State = any;
 export type Context = { state: State; dispatch: Dispatch };
